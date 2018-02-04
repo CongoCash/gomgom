@@ -16,6 +16,7 @@ module TomTomApiHelper
   # @param [String] address the address to convert to lon/lat coordinates
   # @return [Hash] a hash containing the lon/lat ex: {"lat"=>37.71982, "lon"=>-122.4356}
   def get_coordinates(address)
+    address = URI.encode(address)
     end_point = "#{BASE_URL}/search/#{SEARCH_VERSION_NUMBER}/geocode/#{address}.JSON?key=#{tom_tom_api_key}"
     url = URI.parse(end_point)
     http = Net::HTTP.new(url.host, url.port)
